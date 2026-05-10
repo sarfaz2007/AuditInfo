@@ -1,20 +1,149 @@
-import { Layout } from "antd";
-import Sidebar from "../components/Sidebar";
+import React, { useState } from 'react';
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  AppstoreOutlined,
+  BookOutlined,
+  BankOutlined,
+  DashboardOutlined,
+   LogoutOutlined
+} from '@ant-design/icons';
 
-const { Content } = Layout;
+import { Button, Layout, Menu, theme } from 'antd';
+import { Outlet, useNavigate } from 'react-router-dom';
 
-const DashboardLayout = ({ children }) => {
+const { Header, Sider, Content } = Layout;
+
+const AdminLayout = () => {
+  const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+
+  // ✅ LOGOUT FUNCTION
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // remove auth token
+    navigate("/login"); // redirect to login page
+  };
+
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Sidebar />
+    <Layout style={{ minHeight: '100vh' }}>
 
+      {/* SIDEBAR */}
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        style={{
+          height: "100vh",
+          position: "sticky",
+          top: 0,
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            color: 'white',
+            textAlign: 'center',
+            padding: '20px',
+            fontSize: '20px',
+            fontWeight: 'bold',
+          }}
+        >
+          Admin
+        </div>
+
+        <Menu
+          theme='dark'
+          mode='inline'
+          defaultSelectedKeys={['1']}
+          items={[
+            {
+              key: '1',
+              icon: <DashboardOutlined />,
+              label: 'Dashboard',
+              onClick: () => navigate('/'),
+            },
+            {
+              key: '2',
+              icon: <AppstoreOutlined />,
+              label: 'Categories',
+              onClick: () => navigate('/categories'),
+            },
+            {
+              key: '3',
+              icon: <BookOutlined />,
+              label: 'Courses',
+              onClick: () => navigate('/courses'),
+            },
+            {
+              key: '4',
+              icon: <BankOutlined />,
+              label: 'Colleges',
+              onClick: () => navigate('/colleges'),
+            },
+
+            // ✅ LOGOUT MENU
+            {
+              key: '5',
+              icon: <LogoutOutlined />,
+              label: 'Logout',
+              danger: true,
+              onClick: handleLogout,
+            },
+          ]}
+        />
+      </Sider>
+
+      {/* MAIN LAYOUT */}
       <Layout>
-        <Content style={{ padding: 20 }}>
-          {children}
+
+        {/* HEADER */}
+        <Header
+          style={{
+            padding: 0,
+            background: colorBgContainer,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            paddingRight: 20,
+          }}
+        >
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+            style={{
+              fontSize: '16px',
+              width: 64,
+              height: 64,
+            }}
+          />
+
+          {/* ✅ LOGOUT BUTTON */}
+          {/* <Button danger onClick={handleLogout}>
+            Logout
+          </Button> */}
+        </Header>
+
+        {/* CONTENT */}
+        <Content
+          style={{
+            margin: '24px 16px',
+            padding: 24,
+            background: colorBgContainer,
+            borderRadius: borderRadiusLG,
+          }}
+        >
+          <Outlet />
         </Content>
+
       </Layout>
+
     </Layout>
   );
 };
 
-export default DashboardLayout;
+export default AdminLayout;

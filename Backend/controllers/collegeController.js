@@ -28,3 +28,34 @@ export const addCourse = async (req, res, next) => {
     next(err);
   }
 };
+// UPDATE
+export const updateCollege = async (req, res, next) => {
+  try {
+    const data = await service.updateCollegeById(
+      req.params.id,
+      req.body
+    );
+
+    res.json({
+      success: true,
+      message: "College updated successfully",
+      data,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// DELETE
+export const deleteCollege = async (req, res, next) => {
+  try {
+    await service.deleteCollegeById(req.params.id);
+
+    res.json({
+      success: true,
+      message: "College deleted successfully",
+    });
+  } catch (err) {
+    next(err);
+  }
+};

@@ -1,53 +1,86 @@
-import { useState } from "react";
-import { Card, Form, Input, Button, message } from "antd";
-import API from "../api/axios";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react'
+import {
+  Card,
+  Form,
+  Input,
+  Button,
+  Typography,
+  message,
+} from 'antd'
+
+import { LockOutlined, MailOutlined } from '@ant-design/icons'
+
+import { useNavigate } from 'react-router-dom'
+
+import API from '../api/axios'
+
+const { Title } = Typography
 
 const Login = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
 
-  const onFinish = async (values) => {
+  const onFinish = async values => {
     try {
-      setLoading(true);
+      setLoading(true)
 
-      const { data } = await API.post("/auth/login", values);
+      const { data } = await API.post('/auth/login', values)
 
-      localStorage.setItem("token", data.token);
+      localStorage.setItem('token', data.token)
 
-      message.success("Login Success");
+      message.success('Login Successful')
 
-      navigate("/");
+      navigate('/')
     } catch (err) {
-      message.error(err.response?.data?.message || "Login Failed");
+      message.error(err.response?.data?.message || 'Login Failed')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: '#f0f2f5',
       }}
     >
-      <Card title="Admin Login" style={{ width: 400 }}>
-        <Form layout="vertical" onFinish={onFinish}>
-          <Form.Item label="Email" name="email">
-            <Input />
+      <Card
+        style={{
+          width: 400,
+          borderRadius: 16,
+        }}
+      >
+        <Title level={2} style={{ textAlign: 'center' }}>
+          Admin Login
+        </Title>
+
+        <Form layout='vertical' onFinish={onFinish}>
+          <Form.Item
+            label='Email'
+            name='email'
+            rules={[{ required: true, message: 'Enter Email' }]}
+          >
+            <Input prefix={<MailOutlined />} />
           </Form.Item>
 
-          <Form.Item label="Password" name="password">
-            <Input.Password />
+          <Form.Item
+            label='Password'
+            name='password'
+            rules={[{ required: true, message: 'Enter Password' }]}
+          >
+            <Input.Password prefix={<LockOutlined />} />
           </Form.Item>
 
-          <Button type="primary" htmlType="submit" block loading={loading}>
-            Login
-          </Button>
+          <Form.Item>
+            <Button type='primary' htmlType='submit' block loading={loading}>
+              Login
+            </Button>
+          </Form.Item>
         </Form>
       </Card>
     </div>

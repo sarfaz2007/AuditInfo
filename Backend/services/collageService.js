@@ -13,3 +13,11 @@ export const addCourseToCollege = async (collegeId, courseId) => {
     { new: true }
   );
 };
+
+// UPDATE
+export const updateCollegeById = (id, data) =>
+  College.findByIdAndUpdate(id, data, { new: true });
+
+// DELETE
+export const deleteCollegeById = (id) =>
+  College.findByIdAndDelete(id);

@@ -1,73 +1,36 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import Categories from "./pages/Categories";
-import Courses from "./pages/Courses";
-import Colleges from "./pages/Colleges";
+import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
+import Categories from './pages/Categories'
+import Courses from './pages/Courses'
+import Colleges from './pages/Colleges'
 
-import DashboardLayout from "./layouts/DashboardLayout";
-import ProtectedRoute from "./components/ProtectedRoute";
+import AdminLayout from './layouts/DashboardLayout'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='/login' element={<Login />} />
 
-        {/* Login */}
-        <Route path="/login" element={<Login />} />
-
-        {/* Dashboard */}
         <Route
-          path="/"
+          path='/'
           element={
             <ProtectedRoute>
-              <DashboardLayout>
-                <Dashboard />
-              </DashboardLayout>
+              <AdminLayout />
             </ProtectedRoute>
           }
-        />
-
-        {/* Categories */}
-        <Route
-          path="/categories"
-          element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <Categories />
-              </DashboardLayout>
-            </ProtectedRoute>
-          }
-        />
-
-        {/* Courses */}
-        <Route
-          path="/courses"
-          element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <Courses />
-              </DashboardLayout>
-            </ProtectedRoute>
-          }
-        />
-
-        {/* Colleges */}
-        <Route
-          path="/colleges"
-          element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <Colleges />
-              </DashboardLayout>
-            </ProtectedRoute>
-          }
-        />
-
+        >
+          <Route index element={<Dashboard />} />
+          <Route path='categories' element={<Categories />} />
+          <Route path='courses' element={<Courses />} />
+          <Route path='colleges' element={<Colleges />} />
+        </Route>
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

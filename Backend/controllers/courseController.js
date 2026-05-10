@@ -18,3 +18,25 @@ export const getAll = async (req, res, next) => {
     next(err);
   }
 };
+export const updateCourse = async (req, res, next) => {
+  try {
+    const data = await service.updateCourse(
+      req.params.id,
+      req.body
+    );
+
+    res.json(data);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const deleteCourse = async (req, res, next) => {
+  try {
+    const data = await service.deleteCourse(req.params.id);
+
+    res.json(data);
+  } catch (err) {
+    next(err);
+  }
+};
