@@ -1,36 +1,69 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Login from './pages/Login'
-import Dashboard from './pages/Dashboard'
-import Categories from './pages/Categories'
-import Courses from './pages/Courses'
-import Colleges from './pages/Colleges'
+/* ---------------- ADMIN ---------------- */
 
-import AdminLayout from './layouts/DashboardLayout'
-import ProtectedRoute from './components/ProtectedRoute'
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Categories from "./pages/Categories";
+import Courses from "./pages/Courses";
+import Colleges from "./pages/Colleges";
+
+import AdminLayout from "./layouts/DashboardLayout";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+/* ---------------- WEBSITE ---------------- */
+
+import WebLogin from "./web/Login";
+// import Home from "./web/Home";
+// import About from "./web/About";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/login' element={<Login />} />
 
+        {/* ================= WEBSITE ================= */}
+
+        {/* Home Page */}
+        {/* <Route path="/" element={<Home />} /> */}
+
+        {/* Website Login */}
+        <Route path="/login" element={<WebLogin />} />
+
+        {/* About */}
+        {/* <Route path="/about" element={<About />} /> */}
+
+
+        {/* ================= ADMIN ================= */}
+
+        {/* Admin Login */}
+        <Route path="/admin/login" element={<Login />} />
+
+        {/* Admin Dashboard */}
         <Route
-          path='/'
+          path="/admin"
           element={
             <ProtectedRoute>
               <AdminLayout />
             </ProtectedRoute>
           }
         >
+          {/* Dashboard */}
           <Route index element={<Dashboard />} />
-          <Route path='categories' element={<Categories />} />
-          <Route path='courses' element={<Courses />} />
-          <Route path='colleges' element={<Colleges />} />
+
+          {/* Categories */}
+          <Route path="categories" element={<Categories />} />
+
+          {/* Courses */}
+          <Route path="courses" element={<Courses />} />
+
+          {/* Colleges */}
+          <Route path="colleges" element={<Colleges />} />
         </Route>
+
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
