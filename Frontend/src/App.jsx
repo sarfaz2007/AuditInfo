@@ -4,18 +4,22 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import Categories from "./pages/Categories";
-import Courses from "./pages/Courses";
-import Colleges from "./pages/Colleges";
+
+import AdminCategories from "./pages/Categories";
+import AdminCourses from "./pages/Courses";
+import AdminColleges from "./pages/Colleges";
 
 import AdminLayout from "./layouts/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 /* ---------------- WEBSITE ---------------- */
 
+import Homepage from "./web/Homepage";
 import WebLogin from "./web/Login";
-// import Home from "./web/Home";
-// import About from "./web/About";
+
+import Categories from "./web/Category";
+import Courses from "./web/Courses";
+import Colleges from "./web/College";
 
 function App() {
   return (
@@ -24,20 +28,36 @@ function App() {
 
         {/* ================= WEBSITE ================= */}
 
-        {/* Home Page */}
-        {/* <Route path="/" element={<Home />} /> */}
+        {/* Website Homepage */}
+        <Route path="/" element={<Homepage />} />
 
         {/* Website Login */}
         <Route path="/login" element={<WebLogin />} />
 
-        {/* About */}
-        {/* <Route path="/about" element={<About />} /> */}
+        {/* Website Pages */}
+        <Route
+          path="/categories"
+          element={<Categories />}
+        />
+
+        <Route
+          path="/courses"
+          element={<Courses />}
+        />
+
+        <Route
+          path="/college"
+          element={<Colleges />}
+        />
 
 
         {/* ================= ADMIN ================= */}
 
         {/* Admin Login */}
-        <Route path="/admin/login" element={<Login />} />
+        <Route
+          path="/admin/login"
+          element={<Login />}
+        />
 
         {/* Admin Dashboard */}
         <Route
@@ -52,13 +72,22 @@ function App() {
           <Route index element={<Dashboard />} />
 
           {/* Categories */}
-          <Route path="categories" element={<Categories />} />
+          <Route
+            path="categories"
+            element={<AdminCategories />}
+          />
 
           {/* Courses */}
-          <Route path="courses" element={<Courses />} />
+          <Route
+            path="courses"
+            element={<AdminCourses />}
+          />
 
           {/* Colleges */}
-          <Route path="colleges" element={<Colleges />} />
+          <Route
+            path="colleges"
+            element={<AdminColleges />}
+          />
         </Route>
 
       </Routes>
