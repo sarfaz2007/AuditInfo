@@ -31,7 +31,7 @@ const Login = () => {
 
       message.success('Login Successful')
 
-      navigate('/')
+      navigate('/admin')
     } catch (err) {
       message.error(err.response?.data?.message || 'Login Failed')
     } finally {

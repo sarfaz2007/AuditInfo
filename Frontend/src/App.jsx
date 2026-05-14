@@ -28,38 +28,36 @@ function App() {
 
         {/* ================= WEBSITE ================= */}
 
-        {/* Website Homepage */}
-        <Route path="/" element={<Homepage />} />
+        <Route path="/web" element={<Homepage />} />
 
-        {/* Website Login */}
-        <Route path="/login" element={<WebLogin />} />
-
-        {/* Website Pages */}
         <Route
-          path="/categories"
+          path="/web/login"
+          element={<WebLogin />}
+        />
+
+        <Route
+          path="/web/categories"
           element={<Categories />}
         />
 
         <Route
-          path="/courses"
+          path="/web/courses/:categoryId"
           element={<Courses />}
         />
 
         <Route
-          path="/college"
+          path="/web/college"
           element={<Colleges />}
         />
 
 
         {/* ================= ADMIN ================= */}
 
-        {/* Admin Login */}
         <Route
           path="/admin/login"
           element={<Login />}
         />
 
-        {/* Admin Dashboard */}
         <Route
           path="/admin"
           element={
@@ -68,22 +66,18 @@ function App() {
             </ProtectedRoute>
           }
         >
-          {/* Dashboard */}
           <Route index element={<Dashboard />} />
 
-          {/* Categories */}
           <Route
             path="categories"
             element={<AdminCategories />}
           />
 
-          {/* Courses */}
           <Route
             path="courses"
             element={<AdminCourses />}
           />
 
-          {/* Colleges */}
           <Route
             path="colleges"
             element={<AdminColleges />}

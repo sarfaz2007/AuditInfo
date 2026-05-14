@@ -14,13 +14,15 @@ import {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Categories", href: "/categories" },
-    { name: "Courses", href: "/courses" },
-    { name: "College", href: "/college" },
-  ];
+const navLinks = [
+  { name: "Home", href: "/web" },
 
+  { name: "Categories", href: "/web/categories" },
+
+  { name: "Courses", href: "/web/courses/123" },
+
+  { name: "College", href: "/web/college" },
+];
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
