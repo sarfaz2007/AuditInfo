@@ -9,7 +9,7 @@ import {
    LogoutOutlined
 } from '@ant-design/icons';
 
-import { Button, Layout, Menu, theme } from 'antd';
+import { Button, Layout, Menu, theme ,Modal } from 'antd';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
@@ -23,10 +23,23 @@ const AdminLayout = () => {
   } = theme.useToken();
 
   // ✅ LOGOUT FUNCTION
-  const handleLogout = () => {
-    localStorage.removeItem("token"); // remove auth token
-    navigate("/login"); // redirect to login page
-  };
+const handleLogout = () => {
+  Modal.confirm({
+    title: "Logout",
+    content: "Are you sure you want to logout?",
+    okText: "Yes",
+    cancelText: "No",
+
+    onOk() {
+      localStorage.removeItem("token");
+      navigate("/admin/login");
+    },
+
+    onCancel() {
+      console.log("Cancelled");
+    },
+  });
+};
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -64,25 +77,25 @@ const AdminLayout = () => {
               key: '1',
               icon: <DashboardOutlined />,
               label: 'Dashboard',
-              onClick: () => navigate('/'),
+              onClick: () => navigate('/admin'),
             },
             {
               key: '2',
               icon: <AppstoreOutlined />,
               label: 'Categories',
-              onClick: () => navigate('/categories'),
+              onClick: () => navigate('/admin/categories'),
             },
             {
               key: '3',
               icon: <BookOutlined />,
               label: 'Courses',
-              onClick: () => navigate('/courses'),
+              onClick: () => navigate('/admin/courses'),
             },
             {
               key: '4',
               icon: <BankOutlined />,
               label: 'Colleges',
-              onClick: () => navigate('/colleges'),
+              onClick: () => navigate('/admin/colleges'),
             },
 
             // ✅ LOGOUT MENU

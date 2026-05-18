@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 import {
@@ -14,15 +14,16 @@ import {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-const navLinks = [
-  { name: "Home", href: "/web" },
+  const navLinks = [
+    { name: "Home", href: "/" },
 
-  { name: "Categories", href: "/web/categories" },
+    { name: "Categories", href: "/categories" },
 
-  { name: "Courses", href: "/web/courses/123" },
+    { name: "Courses", href: "/courses/123" },
 
-  { name: "College", href: "/web/college" },
-];
+    { name: "College", href: "/college" },
+  ];
+  const navigate = useNavigate();
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,7 +34,8 @@ const navLinks = [
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-2"
+            onClick={() => navigate("/")}
+            className="flex items-center gap-2 cursor-pointer"
           >
             <div className="bg-blue-600 p-1.5 rounded-lg shadow-lg shadow-blue-200">
               <BookOpen className="text-white w-6 h-6" />
@@ -77,8 +79,14 @@ const navLinks = [
               </span>
             </button>
 
-            <button className="p-2 text-gray-400 hover:text-red-500 transition-colors">
+            <button
+              className="flex items-center gap-2 text-gray-600 hover:text-red-500 transition-all px-4 py-2 rounded-full hover:bg-red-50 border border-transparent hover:border-red-100"
+            >
               <LogOut size={18} />
+
+              <span className="font-medium text-sm">
+                Logout
+              </span>
             </button>
           </div>
 

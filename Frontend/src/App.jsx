@@ -2,12 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 /* ---------------- ADMIN ---------------- */
 
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import Login from "./Pages/Login";
+import Dashboard from "./Pages/Dashboard";
 
-import AdminCategories from "./pages/Categories";
-import AdminCourses from "./pages/Courses";
-import AdminColleges from "./pages/Colleges";
+import AdminCategories from "./Pages/Categories";
+import AdminCourses from "./Pages/Courses";
+import AdminColleges from "./Pages/Colleges";
 
 import AdminLayout from "./layouts/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -28,28 +28,27 @@ function App() {
 
         {/* ================= WEBSITE ================= */}
 
-        <Route path="/web" element={<Homepage />} />
+        <Route path="/" element={<Homepage />} />
 
         <Route
-          path="/web/login"
+          path="/login"
           element={<WebLogin />}
         />
 
         <Route
-          path="/web/categories"
+          path="/categories"
           element={<Categories />}
         />
 
         <Route
-          path="/web/courses/:categoryId"
+          path="/courses/:categoryId"
           element={<Courses />}
         />
 
         <Route
-          path="/web/college"
+          path="/college"
           element={<Colleges />}
         />
-
 
         {/* ================= ADMIN ================= */}
 
@@ -69,17 +68,17 @@ function App() {
           <Route index element={<Dashboard />} />
 
           <Route
-            path="categories"
+            path="/admin/categories"
             element={<AdminCategories />}
           />
 
           <Route
-            path="courses"
+            path="/admin/courses"
             element={<AdminCourses />}
           />
 
           <Route
-            path="colleges"
+            path="/admin/colleges"
             element={<AdminColleges />}
           />
         </Route>
