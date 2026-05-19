@@ -24,6 +24,10 @@ const Navbar = () => {
     { name: "College", href: "/college" },
   ];
   const navigate = useNavigate();
+  const handleLogout = () => {
+  localStorage.removeItem("webToken"); // remove token
+  navigate("/login"); // redirect to login page
+};
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,14 +84,15 @@ const Navbar = () => {
             </button>
 
             <button
-              className="flex items-center gap-2 text-gray-600 hover:text-red-500 transition-all px-4 py-2 rounded-full hover:bg-red-50 border border-transparent hover:border-red-100"
-            >
-              <LogOut size={18} />
+  onClick={handleLogout}
+  className="flex items-center gap-2 text-gray-600 hover:text-red-500 transition-all px-4 py-2 rounded-full hover:bg-red-50 border border-transparent hover:border-red-100"
+>
+  <LogOut size={18} />
 
-              <span className="font-medium text-sm">
-                Logout
-              </span>
-            </button>
+  <span className="font-medium text-sm">
+    Logout
+  </span>
+</button>
           </div>
 
           {/* Mobile Button */}
@@ -131,7 +136,10 @@ const Navbar = () => {
 
               <hr className="my-2 border-gray-100" />
 
-              <button className="w-full text-left px-3 py-3 text-base font-medium text-red-500">
+              <button
+                onClick={handleLogout}
+                className="w-full text-left px-3 py-3 text-base font-medium text-red-500"
+              >
                 Logout
               </button>
 
