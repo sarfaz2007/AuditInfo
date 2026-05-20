@@ -4,12 +4,12 @@ import {
   LayoutGrid,
   BookOpen,
   School,
-  Search,
   ChevronRight,
+  Sparkles,
+  GraduationCap,
+  TrendingUp,
 } from "lucide-react";
-
 import { useNavigate } from "react-router-dom";
-
 import Navbar from "../web/Components/Navbar";
 
 const Home = () => {
@@ -18,143 +18,187 @@ const Home = () => {
   const quickAccess = [
     {
       title: "Categories",
-      desc: "Browse different categories",
+      desc: "Browse all academic categories",
       icon: <LayoutGrid className="w-7 h-7" />,
       link: "/categories",
-      color: "bg-blue-100 text-blue-600",
-      hover: "hover:border-blue-200",
+      color: "from-blue-500 to-cyan-500",
+      light: "bg-blue-50 text-blue-600",
     },
-
     {
       title: "Courses",
-      desc: "Explore courses available",
+      desc: "Explore trending courses",
       icon: <BookOpen className="w-7 h-7" />,
       link: "/courses/1",
-      color: "bg-indigo-100 text-indigo-600",
-      hover: "hover:border-indigo-200",
+      color: "from-indigo-500 to-purple-500",
+      light: "bg-indigo-50 text-indigo-600",
     },
-
     {
       title: "College Info",
-      desc: "View college information",
+      desc: "Find top colleges easily",
       icon: <School className="w-7 h-7" />,
       link: "/college",
-      color: "bg-purple-100 text-purple-600",
-      hover: "hover:border-purple-200",
+      color: "from-purple-500 to-pink-500",
+      light: "bg-purple-50 text-purple-600",
     },
   ];
 
   return (
     <>
       <Navbar />
+      <div className="min-h-screen bg-[#f5f7fb] overflow-hidden">
+        {/* HERO SECTION */}
+        <section className="relative">
+          {/* BACKGROUND BLURS */}
+          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl" />
+          <div className="absolute right-0 top-20 w-[30rem] h-[30rem] bg-indigo-200/20 rounded-full blur-3xl" />
 
-      <div className="min-h-screen bg-gray-50/50">
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          
-          {/* Welcome Hero Banner */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="relative overflow-hidden bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-14 shadow-sm mb-12"
-          >
-            <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-12">
-              
-              <div className="max-w-xl text-center md:text-left">
-                <motion.h1
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight"
-                >
-                  Welcome, <span className="text-blue-600">User</span> 👋
-                </motion.h1>
+          <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16">
+            {/* HERO CARD */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#2563eb] p-8 md:p-14 shadow-2xl"
+            >
+              {/* FLOATING ELEMENTS */}
+              <div className="absolute top-10 right-10 w-32 h-32 rounded-full bg-white/10 blur-2xl" />
+              <div className="absolute bottom-0 left-20 w-40 h-40 rounded-full bg-cyan-400/20 blur-3xl" />
 
-                <p className="text-lg text-slate-500 mb-8 leading-relaxed">
-                  Find courses and colleges easily. Your one-stop destination
-                  for auditing academic paths and professional growth.
-                </p>
-
-                {/* Search Box */}
-                <div className="relative group max-w-md mx-auto md:mx-0">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-blue-500 transition-colors" />
-
-                  <input
-                    type="text"
-                    placeholder="What do you want to learn today?"
-                    className="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-200 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all shadow-sm"
-                  />
-                </div>
-              </div>
-
-              {/* Right Side Illustration */}
-              <motion.div
-                initial={{ opacity: 0, rotate: 5 }}
-                animate={{ opacity: 1, rotate: 0 }}
-                transition={{ delay: 0.4 }}
-                className="hidden lg:flex flex-1 justify-end"
-              >
-                <div className="relative w-64 h-64 bg-blue-50 rounded-full flex items-center justify-center">
-                  <School
-                    size={120}
-                    className="text-blue-200"
-                    strokeWidth={1}
-                  />
-
-                  <div className="absolute top-1/4 right-1/4 w-8 h-8 bg-blue-200 rounded-full animate-bounce" />
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Background Blur Effects */}
-            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-blue-50 rounded-full blur-3xl -z-0" />
-
-            <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-72 h-72 bg-indigo-50 rounded-full blur-3xl -z-0" />
-          </motion.div>
-
-          {/* Quick Access */}
-          <section>
-            <div className="flex items-center gap-3 mb-8 px-2">
-              <h2 className="text-2xl font-bold text-slate-800">
-                Quick Access
-              </h2>
-
-              <div className="h-px flex-1 bg-gray-100" />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {quickAccess.map((item, index) => (
-                <motion.div
-                  key={item.title}
-                  onClick={() => navigate(item.link)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 + 0.5 }}
-                  whileHover={{ y: -5 }}
-                  className={`group p-8 rounded-[2rem] bg-white border border-gray-100 shadow-sm transition-all duration-300 cursor-pointer ${item.hover} hover:shadow-xl hover:shadow-gray-200/50`}
-                >
-                  <div
-                    className={`w-14 h-14 ${item.color} rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110`}
-                  >
-                    {item.icon}
+              <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-14">
+                {/* LEFT CONTENT */}
+                <div className="max-w-2xl">
+                  {/* BADGE */}
+                  <div className="inline-flex items-center gap-2 bg-white/10 border border-white/10 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+                    <Sparkles size={16} />
+                    Future Learning Platform
                   </div>
 
-                  <h3 className="text-xl font-bold text-slate-800 mb-2">
-                    {item.title}
-                  </h3>
+                  {/* TITLE */}
+                  <motion.h1
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="text-4xl md:text-6xl font-black text-white leading-tight tracking-tight"
+                  >
+                    Learn Smarter.
+                    <br />
+                    Build Your
+                    <span className="text-cyan-300"> Future.</span>
+                  </motion.h1>
 
-                  <p className="text-slate-500 mb-6 leading-relaxed">
-                    {item.desc}
+                  {/* SUBTEXT */}
+                  <p className="mt-6 text-blue-100 text-lg leading-relaxed max-w-xl">
+                    Discover premium courses, colleges, and career paths
+                    designed to help students grow faster and smarter.
                   </p>
 
-                  <div className="flex items-center gap-2 text-sm font-bold text-blue-600 group-hover:gap-3 transition-all">
-                    Get Started <ChevronRight size={16} />
+                  {/* BUTTONS - Increased margin top since Search is gone */}
+                  <div className="mt-10 flex flex-wrap gap-4">
+                    <button
+                      onClick={() => navigate("/categories")}
+                      className="bg-white text-slate-900 hover:bg-gray-100 px-8 py-4 rounded-2xl font-bold transition-all shadow-lg active:scale-95"
+                    >
+                      Explore Categories
+                    </button>
+                    <button
+                      onClick={() => navigate("/college")}
+                      className="bg-white/10 backdrop-blur-md border border-white/10 text-white hover:bg-white/20 px-8 py-4 rounded-2xl font-bold transition-all active:scale-95"
+                    >
+                      View Colleges
+                    </button>
+                  </div>
+                </div>
+
+                {/* RIGHT SIDE (Visual Decor) */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="hidden lg:flex relative"
+                >
+                  <div className="relative w-[350px] h-[350px] rounded-full bg-white/10 border border-white/10 backdrop-blur-md flex items-center justify-center shadow-2xl">
+                    <GraduationCap
+                      size={140}
+                      className="text-white/90"
+                      strokeWidth={1.3}
+                    />
+
+                    {/* FLOATING STATS */}
+                    <div className="absolute -top-4 left-0 bg-white rounded-2xl px-5 py-4 shadow-xl">
+                      <div className="flex items-center gap-3">
+                        <div className="w-11 h-11 rounded-xl bg-blue-100 flex items-center justify-center">
+                          <TrendingUp className="text-blue-600" size={20} />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-gray-900">1200+</h3>
+                          <p className="text-xs text-gray-500">Active Students</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="absolute bottom-2 -right-5 bg-white rounded-2xl px-5 py-4 shadow-xl">
+                      <div className="flex items-center gap-3">
+                        <div className="w-11 h-11 rounded-xl bg-indigo-100 flex items-center justify-center">
+                          <BookOpen className="text-indigo-600" size={20} />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-gray-900">250+</h3>
+                          <p className="text-xs text-gray-500">Courses</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
-              ))}
-            </div>
-          </section>
-        </main>
+              </div>
+            </motion.div>
+
+            {/* QUICK ACCESS SECTION */}
+            <section className="mt-14">
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h2 className="text-3xl font-bold text-slate-900">
+                    Quick Access
+                  </h2>
+                  <p className="text-gray-500 mt-1">
+                    Everything you need in one place
+                  </p>
+                </div>
+                <div className="hidden md:block h-px w-40 bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+                {quickAccess.map((item, index) => (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.15 }}
+                    whileHover={{ y: -8 }}
+                    onClick={() => navigate(item.link)}
+                    className="group relative overflow-hidden bg-white rounded-[2rem] p-8 border border-gray-100 hover:border-transparent hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                  >
+                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br ${item.color}`} />
+                    <div className="relative z-10">
+                      <div className={`w-16 h-16 ${item.light} group-hover:bg-white/20 group-hover:text-white rounded-2xl flex items-center justify-center mb-6 transition-all`}>
+                        {item.icon}
+                      </div>
+                      <h3 className="text-2xl font-bold text-slate-900 group-hover:text-white transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-500 group-hover:text-white/80 mt-3 leading-relaxed transition-colors">
+                        {item.desc}
+                      </p>
+                      <div className="mt-8 flex items-center gap-2 text-blue-600 group-hover:text-white font-semibold transition-all">
+                        Explore
+                        <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+          </main>
+        </section>
       </div>
     </>
   );
