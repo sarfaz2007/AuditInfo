@@ -1,23 +1,48 @@
-// services/collageService.js
 import College from "../models/Collage.js";
 
-export const createCollege = (data) => College.create(data);
+// CREATE
+export const createCollege = (data) =>
+  College.create(data);
 
+// GET ALL COLLEGES
 export const getColleges = () =>
   College.find().populate("courses");
 
-export const addCourseToCollege = async (collegeId, courseId) => {
+// ADD COURSE TO COLLEGE
+export const addCourseToCollege = async (
+  collegeId,
+  courseId
+) => {
   return College.findByIdAndUpdate(
     collegeId,
-    { $push: { courses: courseId } },
-    { new: true }
+    {
+      $push: { courses: courseId },
+    },
+    {
+      new: true,
+    }
   );
 };
 
 // UPDATE
-export const updateCollegeById = (id, data) =>
-  College.findByIdAndUpdate(id, data, { new: true });
+export const updateCollegeById = (
+  id,
+  data
+) =>
+  College.findByIdAndUpdate(
+    id,
+    data,
+    { new: true }
+  );
 
 // DELETE
 export const deleteCollegeById = (id) =>
   College.findByIdAndDelete(id);
+
+// GET COLLEGES BY COURSE
+export const getCollegesByCourse = (
+  courseId
+) =>
+  College.find({
+    courses: courseId,
+  }).populate("courses");

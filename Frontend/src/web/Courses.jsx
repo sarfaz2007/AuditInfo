@@ -281,7 +281,7 @@ const CoursesPage = () => {
                   {/* BUTTON */}
                   <button className="mt-6 w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white py-3 rounded-2xl font-semibold text-sm transition-all flex items-center justify-center gap-2">
 
-                    Explore Course
+                    Explore Colleges
 
                     <ArrowRight size={16} />
 

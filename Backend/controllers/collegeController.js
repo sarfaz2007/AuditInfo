@@ -59,3 +59,24 @@ export const deleteCollege = async (req, res, next) => {
     next(err);
   }
 };
+
+// GET COLLEGES BY COURSE
+export const getCollegesByCourse = async (
+  req,
+  res,
+  next
+) => {
+  try {
+
+    const data =
+      await service.getCollegesByCourse(
+        req.params.courseId
+      );
+
+    res.json(data);
+
+  } catch (err) {
+
+    next(err);
+  }
+};

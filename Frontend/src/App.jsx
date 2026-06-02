@@ -21,6 +21,9 @@ import Categories from "./web/Category";
 import Courses from "./web/Courses";
 import Colleges from "./web/College";
 
+import AllCoursesPage from "./web/AllCoursesPage";
+import College from "./web/College";
+
 function App() {
   return (
     <BrowserRouter>
@@ -48,6 +51,15 @@ function App() {
         <Route
           path="/college"
           element={<Colleges />}
+        />
+
+        <Route path="/courses"
+          element={<AllCoursesPage />}
+        />
+
+        <Route
+          path="/college"
+          element={<College />}
         />
 
         {/* ================= ADMIN ================= */}
@@ -81,6 +93,7 @@ function App() {
             path="/admin/colleges"
             element={<AdminColleges />}
           />
+
         </Route>
 
       </Routes>

@@ -28,7 +28,7 @@ const Home = () => {
       title: "Courses",
       desc: "Explore trending courses",
       icon: <BookOpen className="w-7 h-7" />,
-      link: "/courses/1",
+      link: "/courses",
       color: "from-indigo-500 to-purple-500",
       light: "bg-indigo-50 text-indigo-600",
     },
