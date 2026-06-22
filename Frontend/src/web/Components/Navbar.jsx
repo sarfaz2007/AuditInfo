@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -14,15 +14,15 @@ import {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navLinks = [
-    { name: "Home", href: "/" },
+  // const navLinks = [
+  //   { name: "Home", href: "/" },
 
-    { name: "Categories", href: "/categories" },
+  //   { name: "Categories", href: "/categories" },
 
-    { name: "Courses", href: "/courses/123" },
+  //   { name: "Courses", href: "/courses/123" },
 
-    { name: "College", href: "/college" },
-  ];
+  //   { name: "College", href: "/college" },
+  // ];
   const navigate = useNavigate();
   const handleLogout = () => {
   localStorage.removeItem("webToken"); // remove token
@@ -52,7 +52,7 @@ const Navbar = () => {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-
+{/* 
             {navLinks.map((link, idx) => (
               <motion.div
                 key={link.name}
@@ -69,7 +69,7 @@ const Navbar = () => {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full" />
                 </Link>
               </motion.div>
-            ))}
+            ))} */}
           </div>
 
           {/* Right Side */}
@@ -124,7 +124,7 @@ const Navbar = () => {
           >
             <div className="px-4 pt-2 pb-6 space-y-2">
 
-              {navLinks.map((link) => (
+              {/* {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.href}
@@ -132,7 +132,7 @@ const Navbar = () => {
                 >
                   {link.name}
                 </Link>
-              ))}
+              ))} */}
 
               <hr className="my-2 border-gray-100" />
 

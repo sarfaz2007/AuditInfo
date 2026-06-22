@@ -28,46 +28,27 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-
         {/* ================= WEBSITE ================= */}
 
         <Route path="/" element={<Homepage />} />
 
-        <Route
-          path="/login"
-          element={<WebLogin />}
-        />
+        <Route path="/login" element={<WebLogin />} />
 
-        <Route
-          path="/categories"
-          element={<Categories />}
-        />
+        <Route path="/categories" element={<Categories />} />
 
-        <Route
-          path="/courses/:categoryId"
-          element={<Courses />}
-        />
+        <Route path="/courses/:categoryId" element={<Courses />} />
 
-        <Route
-          path="/college"
-          element={<Colleges />}
-        />
+        <Route path="/college" element={<Colleges />} />
 
-        <Route path="/courses"
-          element={<AllCoursesPage />}
-        />
+        <Route path="/courses" element={<AllCoursesPage />} />
 
-        <Route
-          path="/college"
-          element={<College />}
-        />
+        <Route path="/college" element={<College />} />
+
+        <Route path="/colleges/:courseId" element={<College />} />
 
         {/* ================= ADMIN ================= */}
 
-        <Route
-          path="/admin/login"
-          element={<Login />}
-        />
+        <Route path="/admin/login" element={<Login />} />
 
         <Route
           path="/admin"
@@ -79,23 +60,12 @@ function App() {
         >
           <Route index element={<Dashboard />} />
 
-          <Route
-            path="/admin/categories"
-            element={<AdminCategories />}
-          />
+          <Route path="/admin/categories" element={<AdminCategories />} />
 
-          <Route
-            path="/admin/courses"
-            element={<AdminCourses />}
-          />
+          <Route path="/admin/courses" element={<AdminCourses />} />
 
-          <Route
-            path="/admin/colleges"
-            element={<AdminColleges />}
-          />
-
+          <Route path="/admin/colleges" element={<AdminColleges />} />
         </Route>
-
       </Routes>
     </BrowserRouter>
   );

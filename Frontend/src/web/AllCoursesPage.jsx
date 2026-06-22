@@ -156,8 +156,8 @@ const AllCoursesPage = () => {
                     </p>
 
                     {/* BUTTON */}
-                    <button className="w-full mt-7 bg-slate-900 hover:bg-blue-600 text-white py-3 rounded-2xl font-semibold transition-all duration-300">
-                      View Course
+                    <button className="w-full mt-7 bg-slate-300 hover:bg-blue-600 text-white py-3 rounded-2xl font-semibold transition-all duration-300">
+                      View Colleges
                     </button>
 
                   </div>
