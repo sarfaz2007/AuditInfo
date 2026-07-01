@@ -21,6 +21,12 @@ router.get(
   getCollegesByCourse
 );
 
+router.get("/test", (req, res) => {
+  res.json({
+    message: "College Route Working",
+  });
+});
+
 router.post("/add-course", addCourse);
 
 router.put("/:id", updateCollege);

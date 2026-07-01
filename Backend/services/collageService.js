@@ -40,9 +40,22 @@ export const deleteCollegeById = (id) =>
   College.findByIdAndDelete(id);
 
 // GET COLLEGES BY COURSE
-export const getCollegesByCourse = (
-  courseId
-) =>
-  College.find({
+// export const getCollegesByCourse = (
+//   courseId
+// ) =>
+//   College.find({
+//     courses: courseId,
+//   }).populate("courses");
+
+
+  export const getCollegesByCourse = async (courseId) => {
+  console.log("Searching Course:", courseId);
+
+  const colleges = await College.find({
     courses: courseId,
   }).populate("courses");
+
+  console.log("Found Colleges:", colleges);
+
+  return colleges;
+};
