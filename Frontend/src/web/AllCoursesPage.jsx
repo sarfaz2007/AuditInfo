@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import API from "../api/axios";
 
@@ -12,6 +13,8 @@ import {
 } from "lucide-react";
 
 const AllCoursesPage = () => {
+
+  const navigate = useNavigate();
 
   const [courses, setCourses] = useState([]);
 
@@ -156,9 +159,14 @@ const AllCoursesPage = () => {
                     </p>
 
                     {/* BUTTON */}
-                    <button className="w-full mt-7 bg-slate-300 hover:bg-blue-600 text-white py-3 rounded-2xl font-semibold transition-all duration-300">
-                      View Colleges
-                    </button>
+                   <button
+  onClick={() => {
+    console.log(course._id);
+    navigate(`/colleges/${course._id}`);
+  }}
+>
+  Explore Colleges
+</button>
 
                   </div>
                 </div>

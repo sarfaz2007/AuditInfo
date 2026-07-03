@@ -1,47 +1,43 @@
 import React, { useEffect, useState } from "react";
-
+import { useParams, Link } from "react-router-dom";
 import API from "../api/axios";
-
+import Navbar from "./Components/Navbar";
 import {
   School,
   BookOpen,
+  ArrowLeft,
   GraduationCap,
 } from "lucide-react";
 
-import Navbar from "./Components/Navbar";
-
 const College = () => {
+  const { courseId } = useParams();
 
   const [colleges, setColleges] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const [loading, setLoading] = useState(false);
-
-  // FETCH COLLEGES
   const fetchColleges = async () => {
-
     try {
-
       setLoading(true);
 
-      const response = await API.get("/colleges");
+      console.log("Course ID:", courseId);
 
-      console.log(response.data);
+      const response = await API.get(
+        `/colleges/course/${courseId}`
+      );
 
-      setColleges(response.data || []);
+      console.log("Response:", response.data);
 
+      setColleges(response.data);
     } catch (error) {
-
       console.log(error);
-
     } finally {
-
       setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchColleges();
-  }, []);
+  }, [courseId]);
 
   return (
     <>
@@ -49,35 +45,56 @@ const College = () => {
 
       <div className="min-h-screen bg-[#f5f7fb]">
 
-        {/* HEADER */}
-        <div className="bg-white border-b border-gray-100">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-indigo-700 via-blue-700 to-cyan-600">
 
-          <div className="max-w-7xl mx-auto px-6 py-10">
+          <div className="max-w-7xl mx-auto px-6 py-12">
 
-            <h1 className="text-4xl font-bold text-slate-900">
-              Colleges
+            <Link
+              to="/categories"
+              className="inline-flex items-center gap-2 text-white mb-6"
+            >
+              <ArrowLeft size={18} />
+              Back
+            </Link>
+
+            <h1 className="text-4xl font-bold text-white">
+              Colleges Offering This Course
             </h1>
 
-            <p className="text-gray-500 mt-2">
-              Explore top colleges and available courses
+            <p className="text-indigo-100 mt-2">
+              Explore colleges where this course is available.
             </p>
 
           </div>
         </div>
 
-        {/* CONTENT */}
+        {/* Content */}
         <div className="max-w-7xl mx-auto px-6 py-10">
 
           {loading ? (
 
-            <div className="text-center py-20 text-gray-500">
-              Loading colleges...
+            <div className="text-center py-20 text-lg">
+              Loading Colleges...
             </div>
 
           ) : colleges.length === 0 ? (
 
-            <div className="text-center py-20 text-gray-400">
-              No colleges found
+            <div className="bg-white rounded-3xl shadow-sm py-20 text-center">
+
+              <School
+                className="mx-auto text-indigo-500"
+                size={60}
+              />
+
+              <h2 className="text-2xl font-bold mt-5">
+                No Colleges Found
+              </h2>
+
+              <p className="text-gray-500 mt-2">
+                No colleges provide this course.
+              </p>
+
             </div>
 
           ) : (
@@ -88,44 +105,40 @@ const College = () => {
 
                 <div
                   key={college._id}
-                  className="bg-white rounded-3xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+                  className="bg-white rounded-3xl overflow-hidden border border-gray-100 hover:shadow-xl transition"
                 >
 
-                  {/* TOP */}
-                  <div className="h-40 bg-gradient-to-br from-indigo-600 to-blue-700 flex items-center justify-center relative">
+                  {/* Top */}
+                  <div className="h-44 bg-gradient-to-br from-indigo-600 via-blue-600 to-cyan-500 flex justify-center items-center">
 
                     <School
-                      className="text-white/20 w-24 h-24"
+                      className="text-white"
+                      size={60}
                     />
-
-                    <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs">
-                      College
-                    </div>
 
                   </div>
 
-                  {/* BODY */}
+                  {/* Body */}
                   <div className="p-6">
 
-                    <h2 className="text-2xl font-bold text-slate-800">
+                    <h2 className="text-2xl font-bold text-gray-900">
                       {college.name}
                     </h2>
 
-                    <div className="flex items-center gap-2 mt-3 text-gray-500 text-sm">
-                      <GraduationCap size={16} />
+                    <div className="flex items-center gap-2 mt-3 text-gray-500">
+                      <GraduationCap size={18} />
                       Available Courses
                     </div>
 
-                    {/* COURSES */}
-                    <div className="mt-5 flex flex-wrap gap-2">
+                    <div className="mt-5 space-y-3">
 
-                      {college.courses?.map((course) => (
+                      {college.courses.map((course) => (
 
                         <div
                           key={course._id}
-                          className="flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-2 rounded-xl text-sm"
+                          className="flex items-center gap-2 bg-indigo-50 text-indigo-700 px-4 py-3 rounded-xl"
                         >
-                          <BookOpen size={14} />
+                          <BookOpen size={16} />
 
                           {course.name}
                         </div>
@@ -135,6 +148,7 @@ const College = () => {
                     </div>
 
                   </div>
+
                 </div>
 
               ))}
@@ -144,6 +158,7 @@ const College = () => {
           )}
 
         </div>
+
       </div>
     </>
   );
